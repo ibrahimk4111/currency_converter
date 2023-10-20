@@ -43,7 +43,7 @@ const ConverterForm = () => {
                                     {
                                         Object.keys(currencyRates.rates).map((rate, index) => (
                                             <option key={index} value={rate}>
-                                                {rate} - {countryName.symbols[`${toCurrency}`]}
+                                                {rate} - {countryName && countryName.symbols[`${toCurrency}`]}
                                             </option>
                                         ))
                                     }
