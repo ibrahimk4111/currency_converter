@@ -1,0 +1,20 @@
+.mainBox{
+    max-width: 800px;
+    margin: auto;
+}
+.form{
+    background-color: aliceblue;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+    gap: 1rem;
+}
+.result{
+    background: rgb(212, 212, 212);
+}
+.input-amount, .select-from, .select-to, .result{
+    height: 2rem;
+    width: 100%;
+}
