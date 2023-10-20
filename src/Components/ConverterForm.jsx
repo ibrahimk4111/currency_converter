@@ -23,55 +23,59 @@ const ConverterForm = () => {
 
                         <input type="number" name="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
 
-                        <label htmlFor="">From Currency</label>
-                        <select className='select-from' value={fromCurrency} onChange={onchangeFromHandler}>
-                            {
-                                countries.map((country, index) => (
-                                    <option key={index} value={Object.keys(country.currencies)[0]}>
-                                        {Object.keys(country.currencies)[0]} - {country.name.common}
-                                    </option>
-                                ))
-                            }
-                        </select>
-
-                        <label htmlFor="">To Currency</label>
-                        {currencyRates &&
-                            <select className='select-to' value={toCurrency} onChange={(e) => settoCurrency(e.target.value)}>
+                        <div>
+                            <p style={{ marginBottom: '5px', }}>FROM CURRENCY :</p>
+                            <select className='select-from' value={fromCurrency} onChange={onchangeFromHandler}>
                                 {
-                                    Object.keys(currencyRates.rates).map((rate, index) => (
-                                        <option key={index} value={rate}>
-                                            {rate} - {countryName.symbols[`${toCurrency}`]}
+                                    countries.map((country, index) => (
+                                        <option key={index} value={Object.keys(country.currencies)[0]}>
+                                            {Object.keys(country.currencies)[0]} - {country.name.common}
                                         </option>
                                     ))
                                 }
                             </select>
-                        }
+                        </div>
+
+                        <div>
+                            <p style={{ marginBottom: '5px' }}>TO CURRENCY :</p>
+                            {currencyRates &&
+                                <select className='select-to' value={toCurrency} onChange={(e) => settoCurrency(e.target.value)}>
+                                    {
+                                        Object.keys(currencyRates.rates).map((rate, index) => (
+                                            <option key={index} value={rate}>
+                                                {rate} - {countryName.symbols[`${toCurrency}`]}
+                                            </option>
+                                        ))
+                                    }
+                                </select>
+                            }
+                        </div>
                     </form>
                 </div>
 
                 <div className='result'>
                     <p className='totalAmount'>
                         <span>Converted amount is = </span>
-                        <span style={{fontWeight:'bold'}}> 
+                        <span style={{ fontWeight: 'bold' }}>
                             {currencyRates &&
                                 currencyRates.rates[`${toCurrency}`] * amount
-                            } 
+                            }
                         </span>
                         <span> in </span>
-                        <span style={{fontWeight:'bold'}}> {toCurrency} </span>
+                        <span style={{ fontWeight: 'bold' }}> {toCurrency} </span>
                     </p>
                     <span className='time'>
                         {currencyRates &&
                             <div>
-                                <p style={{fontSize:'10px'}}>Market rates collected - {currencyRates.date}, {new Date(currencyRates.timestamp).toLocaleTimeString()}</p>
+                                <p style={{ fontSize: '10px' }}>Market rates collected - {currencyRates.date}, {new Date(currencyRates.timestamp).toLocaleTimeString()}</p>
                             </div>
                         }
                     </span>
                 </div>
 
-                <footer style={{color:'gray', display:'flex', justifyContent: 'space-between'}}>
+                <footer style={{ color: 'gray', display: 'flex', justifyContent: 'space-between' }}>
                     <span> Good project to understand OOP </span>
-                    <span style={{fontSize:'8px'}}>
+                    <span style={{ fontSize: '8px' }}>
                         Developed by <a href='https://github.com/ibrahimk4111' target='_blank' rel='noreferrer'>Md. Ibrahim Khalil</a>
                     </span>
                 </footer>
