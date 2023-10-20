@@ -5,7 +5,7 @@ export const UserContext = createContext();
 
 const ContextApi = ({ children }) => {
   const APIKEY = "UEScgk7d2Zhnek9VmDxcp99IJr3ywhFw";
-  const [toCurrency, settoCurrency] = useState("USD");
+  const [toCurrency, settoCurrency] = useState("BDT");
 
   // Start Rest Country API data
   const [countries, setCountries] = useState([]);
@@ -21,7 +21,7 @@ const ContextApi = ({ children }) => {
   // END Rest Country API data
 
   // Start currency rates API data
-  const [fromCurrency, setfromCurrency] = useState("BDT");
+  const [fromCurrency, setfromCurrency] = useState("USD");
   const [currencyRates, setcurrencyRates] = useState();
   const [countryName, setCountryName] = useState();
 
