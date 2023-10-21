@@ -14,6 +14,11 @@ const ConverterForm = () => {
     }
 
     // currencyRates && console.log()
+    const toggleHandler = () =>{
+        setfromCurrency(toCurrency)
+        settoCurrency(fromCurrency)
+        fetchRates(toCurrency)
+    }
 
     return (
         <>
@@ -21,10 +26,12 @@ const ConverterForm = () => {
                 <div>
                     <form className='form'>
 
-                        <input type="number" name="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
+                        <div className='formDivs'>
+                            <input className='amount' type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
+                        </div>
 
-                        <div>
-                            <p style={{ marginBottom: '5px', }}>FROM CURRENCY :</p>
+                        <div className='formDivs'>
+                            <p style={{ marginTop: '2px', }}>FROM CURRENCY :</p>
                             <select className='select-from' value={fromCurrency} onChange={onchangeFromHandler}>
                                 {
                                     countries.map((country, index) => (
@@ -36,8 +43,12 @@ const ConverterForm = () => {
                             </select>
                         </div>
 
-                        <div>
-                            <p style={{ marginBottom: '5px' }}>TO CURRENCY :</p>
+                        <div className='toggle formDivs' onClick={toggleHandler}>
+                            <span style={{color: 'white'}}>||</span>
+                        </div>
+
+                        <div className='formDivs'>
+                            <p style={{ marginTop: '2px' }}>TO CURRENCY :</p>
                             {currencyRates &&
                                 <select className='select-to' value={toCurrency} onChange={(e) => settoCurrency(e.target.value)}>
                                     {

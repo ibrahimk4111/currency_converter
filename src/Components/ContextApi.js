@@ -44,7 +44,7 @@ const ContextApi = ({ children }) => {
 
   useEffect(() => {
     fetchCountry();
-    fetchRates(fromCurrency);
+    // fetchRates(fromCurrency);
     fetchSymbols();
   }, [fromCurrency]);
 
