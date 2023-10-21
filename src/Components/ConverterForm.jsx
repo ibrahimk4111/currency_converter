@@ -20,6 +20,7 @@ const ConverterForm = () => {
         fetchRates(toCurrency)
     }
 
+    currencyRates && console.log(currencyRates)
     return (
         <>
             <div className='mainBox'>
