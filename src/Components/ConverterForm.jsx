@@ -14,13 +14,13 @@ const ConverterForm = () => {
     }
 
     // currencyRates && console.log()
-    const toggleHandler = () =>{
+    const toggleHandler = () => {
         setfromCurrency(toCurrency)
         settoCurrency(fromCurrency)
         fetchRates(toCurrency)
     }
 
-    currencyRates && console.log(currencyRates)
+    currencyRates && console.log(currencyRates.rates)
     return (
         <>
             <div className='mainBox'>
@@ -31,6 +31,7 @@ const ConverterForm = () => {
                             <input className='amount' type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
                         </div>
 
+                        {/* From currency fields */}
                         <div className='formDivs'>
                             <p style={{ marginTop: '2px', }}>FROM CURRENCY :</p>
                             <select className='select-from' value={fromCurrency} onChange={onchangeFromHandler}>
@@ -44,18 +45,20 @@ const ConverterForm = () => {
                             </select>
                         </div>
 
+                        {/* Toggler */}
                         <div className='toggle formDivs' onClick={toggleHandler}>
-                            <span style={{color: 'white'}}>||</span>
+                            <span style={{ color: 'white' }}>||</span>
                         </div>
 
+                        {/* To currency fields */}
                         <div className='formDivs'>
                             <p style={{ marginTop: '2px' }}>TO CURRENCY :</p>
                             {currencyRates &&
                                 <select className='select-to' value={toCurrency} onChange={(e) => settoCurrency(e.target.value)}>
                                     {
-                                        Object.keys(currencyRates.rates).map((rate, index) => (
-                                            <option key={index} value={rate}>
-                                                {rate} - {countryName && countryName.symbols[`${toCurrency}`]}
+                                        countries.map((country, index) => (
+                                            <option key={index} value={Object.keys(country.currencies)[0]}>
+                                                {Object.keys(country.currencies)[0]} - {country.name.common}
                                             </option>
                                         ))
                                     }
