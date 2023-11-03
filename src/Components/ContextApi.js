@@ -23,7 +23,7 @@ const ContextApi = ({ children }) => {
   // Start currency rates API data
   const [fromCurrency, setfromCurrency] = useState("USD");
   const [currencyRates, setcurrencyRates] = useState();
-  const [countryName, setCountryName] = useState();
+  // const [countryName, setCountryName] = useState();
 
   // fetching rates from api
   async function fetchRates(baseData) {
@@ -33,19 +33,19 @@ const ContextApi = ({ children }) => {
     setcurrencyRates(data);
   }
 
-  // fetching symbols from api
-  async function fetchSymbols() {
-    const { data } = await axios.get(
-      `https://api.apilayer.com/fixer/symbols?apikey=${APIKEY}`
-    );
-    setCountryName(data);
-  }
-  // END currency rates API data
+  // // fetching symbols from api
+  // async function fetchSymbols() {
+  //   const { data } = await axios.get(
+  //     `https://api.apilayer.com/fixer/symbols?apikey=${APIKEY}`
+  //   );
+  //   setCountryName(data);
+  // }
+  // // END currency rates API data
 
   useEffect(() => {
     fetchCountry();
     fetchRates(fromCurrency);
-    fetchSymbols();
+    // fetchSymbols();
   }, [fromCurrency]);
 
   return (
@@ -56,7 +56,7 @@ const ContextApi = ({ children }) => {
         setfromCurrency,
         fetchRates,
         currencyRates,
-        countryName,
+        // countryName,
         toCurrency,
         settoCurrency,
       }}

@@ -4,9 +4,10 @@ import { UserContext } from './ContextApi'
 import { useState } from 'react'
 
 const ConverterForm = () => {
-    const [amount, setAmount] = useState(1)
 
-    const { countries, fromCurrency, setfromCurrency, fetchRates, currencyRates, countryName, toCurrency, settoCurrency } = useContext(UserContext)
+    const { countries, fromCurrency, setfromCurrency, fetchRates, currencyRates, toCurrency, settoCurrency } = useContext(UserContext)
+
+    const [amount, setAmount] = useState(1)
 
     const onchangeFromHandler = (e) => {
         setfromCurrency(e.target.value)
@@ -27,6 +28,7 @@ const ConverterForm = () => {
                 <div>
                     <form className='form'>
 
+                        {/* input field */}
                         <div className='formDivs'>
                             <input className='amount' type="number" value={amount} onChange={(e) => setAmount(e.target.value)} />
                         </div>
@@ -53,7 +55,7 @@ const ConverterForm = () => {
                         {/* To currency fields */}
                         <div className='formDivs'>
                             <p style={{ marginTop: '2px' }}>TO CURRENCY :</p>
-                            {currencyRates &&
+                            {currencyRates ?
                                 <select className='select-to' value={toCurrency} onChange={(e) => settoCurrency(e.target.value)}>
                                     {
                                         countries.map((country, index) => (
@@ -62,20 +64,27 @@ const ConverterForm = () => {
                                             </option>
                                         ))
                                     }
+                                </select> :
+                                <select className='select-to' defaultValue=" Loading ">
+                                    <option defaultValue=" Loading ">
+                                        Loading
+                                    </option>
                                 </select>
                             }
                         </div>
                     </form>
                 </div>
 
+                {/* calculated result part */}
                 <div className='result'>
                     <p className='totalAmount'>
                         <span>Converted amount is = </span>
-                        <span style={{ fontWeight: 'bold' }}>
-                            {currencyRates &&
-                                currencyRates.rates[`${toCurrency}`] * amount
-                            }
-                        </span>
+                        {currencyRates ?
+                            <span style={{ fontWeight: 'bold' }}>
+                                {currencyRates.rates[`${toCurrency}`] * amount}
+                            </span> :
+                            <span style={{ fontWeight: 'bold' }}></span>
+                        }
                         <span> in </span>
                         <span style={{ fontWeight: 'bold' }}> {toCurrency} </span>
                     </p>
