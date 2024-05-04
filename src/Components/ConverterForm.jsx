@@ -98,7 +98,7 @@ const ConverterForm = () => {
                 </div>
 
                 <footer style={{ color: 'gray', display: 'flex', justifyContent: 'space-between' }}>
-                    <span> Good project to understand OOP </span>
+                    <span> Thank you for here. </span>
                     <span style={{ fontSize: '8px' }}>
                         Developed by <a href='https://github.com/ibrahimk4111' target='_blank' rel='noreferrer'>Md. Ibrahim Khalil</a>
                     </span>
